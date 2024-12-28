@@ -47,8 +47,13 @@ This project focuses on real-time 3D visualization of Phased Array Ultrasonic Te
 - **AI (Planned)**: AI optimization and real-time detection.
 
 ## Results (Ongoing)
-   ![ROBOT](https://github.com/user-attachments/assets/555f0f79-96e5-41ee-b985-6aad356d82ed)
-   ![RealtimePAUT GPU All Mode](https://github.com/user-attachments/assets/5a82aa52-8887-46a6-953a-2d1b2e71bba4)
+   https://github.com/user-attachments/assets/8b175165-b30c-47b8-a85f-a454044e6820
+   
+   ![RealtimePAUT GPU All Mode](https://github.com/user-attachments/assets/ad69d357-cdf9-4876-a386-0e49341529ce)
+
+
+
+
 
 
 - **Render Performance**:
