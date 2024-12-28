@@ -1,6 +1,11 @@
 # 3D PAUT Visualization and Real-time Robotics Integration
 
+**Note:** The source code is private due to privacy policies. For inquiries, contact:  
+📧 Email: ngdtuan.dn@gmail.com  
+🔗 LinkedIn: [Nguyen Tuan](https://www.linkedin.com/in/nguyen-tuan-a2a589128/)  
+
 ## Overview
+
 This project focuses on real-time 3D visualization of Phased Array Ultrasonic Testing (PAUT) data and integrates it with robotic control for industrial applications. It leverages Vulkan for high-performance rendering and includes plans for AI-based optimization in the future.
 
 ## Key Features
