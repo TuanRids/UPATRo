@@ -1,6 +1,6 @@
 # 3D PAUT Visualization and Real-time Robotics Integration
 
-**Note:** The source code is private due to privacy policies. For inquiries, contact:  
+**Note:** The source code is private due to the privacy policies of My Organization. For inquiries, contact:  
 📧 Email: ngdtuan.dn@gmail.com  
 🔗 LinkedIn: [Nguyen Tuan](https://www.linkedin.com/in/nguyen-tuan-a2a589128/)  
 
