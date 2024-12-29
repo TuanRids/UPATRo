@@ -1,4 +1,6 @@
 # 3D PAUT Visualization and Real-time Robotics Integration
+
+
 ## Results (Ongoing)
    https://github.com/user-attachments/assets/8b175165-b30c-47b8-a85f-a454044e6820
    
@@ -7,8 +9,11 @@
 ## Overview
 This project focuses on real-time 3D visualization of Phased Array Ultrasonic Testing (PAUT) data and integrates it with robotic control for industrial applications. It leverages Vulkan for high-performance rendering and includes plans for AI-based optimization in the future.
 
-## Key Features
+Note: The source code is private due to privacy policies. For inquiries, contact:
+📧 Email: ngdtuan.dn@gmail.com
+🔗 LinkedIn: Nguyen Tuan
 
+## Key Features
 ### 1. Phased Array Ultrasound in Realtime
 - Real-time control and processing of OmniScan PAUT data.
 - Full rendering and handling of A, B, S, and C-scan data.
