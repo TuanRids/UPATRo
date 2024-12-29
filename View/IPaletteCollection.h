@@ -1,0 +1,63 @@
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/// @file View\IPaletteCollection.h.
+///
+/// NDE file domain path Not available in NDE
+/// 
+/// Declares the IPaletteCollection interface
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma once
+#include <memory>
+#include <View/IPalette.h>
+
+
+namespace Olympus
+{
+  namespace View
+  {
+    class IPaletteCollection
+    {
+    public:
+      virtual ~IPaletteCollection() = default;
+
+      /////////////////////////////////////////////////////////////////////////////////////////////
+      /// Gets the number of palette in the collection.
+      ///
+      /// @returns The count.
+      /////////////////////////////////////////////////////////////////////////////////////////////
+      virtual std::size_t GetCount() const = 0;
+
+      /////////////////////////////////////////////////////////////////////////////////////////////
+      /// Gets a palette.
+      ///
+      /// NDE file domain path Not available in NDE
+      /// 
+      /// @param index The index of the palette.
+      ///
+      /// @returns A constant pointer to the palette.
+      /////////////////////////////////////////////////////////////////////////////////////////////
+      virtual IPaletteConstPtr GetPalette(std::size_t index) const = 0;
+
+      virtual IPalettePtr GetPalette(std::size_t index) = 0;
+
+      /////////////////////////////////////////////////////////////////////////////////////////////
+      /// Removes the palette with a given index.
+      ///
+      /// @param index The index of the palette to remove.
+      /////////////////////////////////////////////////////////////////////////////////////////////
+      virtual void Remove(std::size_t index) = 0;
+
+      /////////////////////////////////////////////////////////////////////////////////////////////
+      /// Adds a palette to the collection.
+      ///
+      /// @param name    The Name of the palette.
+      ///
+      /// @returns A pointer to the palette.
+      /////////////////////////////////////////////////////////////////////////////////////////////
+      virtual IPalettePtr Add(std::wstring name) = 0;
+
+    };
+
+    using IPaletteCollectionPtr = std::shared_ptr<IPaletteCollection>;
+    using IPaletteCollectionConstPtr = std::shared_ptr<const IPaletteCollection>;
+  }
+}

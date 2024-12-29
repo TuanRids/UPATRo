@@ -1,0 +1,10 @@
+{
+	"name": "Ropview",
+	"version": "1.0.0",
+	"dependencies": [
+		"boost",
+		"fmt",
+		"nlohmann-json",
+		"zeromq"
+	]
+}

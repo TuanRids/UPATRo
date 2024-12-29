@@ -1,15 +1,6 @@
 # 3D PAUT Visualization and Real-time Robotics Integration
-## Results (Ongoing)
-   https://github.com/user-attachments/assets/8b175165-b30c-47b8-a85f-a454044e6820
-   
-   ![RealtimePAUT GPU All Mode](https://github.com/user-attachments/assets/ad69d357-cdf9-4876-a386-0e49341529ce)
 
-**Note:** The source code is private due to the privacy policies of My Organization. For inquiries, contact:  
-📧 Email: ngdtuan.dn@gmail.com  
-🔗 LinkedIn: [Nguyen Tuan](https://www.linkedin.com/in/nguyen-tuan-a2a589128/)  
-https://github.com/TuanRids/RoPaut
 ## Overview
-
 This project focuses on real-time 3D visualization of Phased Array Ultrasonic Testing (PAUT) data and integrates it with robotic control for industrial applications. It leverages Vulkan for high-performance rendering and includes plans for AI-based optimization in the future.
 
 ## Key Features
@@ -50,6 +41,9 @@ This project focuses on real-time 3D visualization of Phased Array Ultrasonic Te
 - **CUDA**: Accelerated FEM computation (C++)
 - **AI (Planned)**: AI optimization and real-time detection.
 
+## Results (Ongoing)
+   ![realtimePAUT_withoutoptimization](https://github.com/user-attachments/assets/b0baf511-1284-461f-88f8-cce91b33ea4b)
+   ![RealtimePAUT GPU All Mode](https://github.com/user-attachments/assets/5a82aa52-8887-46a6-953a-2d1b2e71bba4)
 
 - **Render Performance**:
   - Successfully rendered **~1.5 million pixels** in **2ms** (~500 FPS).
