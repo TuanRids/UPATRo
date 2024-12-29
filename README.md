@@ -1,4 +1,8 @@
 # 3D PAUT Visualization and Real-time Robotics Integration
+## Results (Ongoing)
+   https://github.com/user-attachments/assets/8b175165-b30c-47b8-a85f-a454044e6820
+   
+   ![RealtimePAUT GPU All Mode](https://github.com/user-attachments/assets/ad69d357-cdf9-4876-a386-0e49341529ce)
 
 **Note:** The source code is private due to the privacy policies of My Organization. For inquiries, contact:  
 📧 Email: ngdtuan.dn@gmail.com  
@@ -45,15 +49,6 @@ This project focuses on real-time 3D visualization of Phased Array Ultrasonic Te
 - **FEM**: Finite Element Method simulation (C++)
 - **CUDA**: Accelerated FEM computation (C++)
 - **AI (Planned)**: AI optimization and real-time detection.
-
-## Results (Ongoing)
-   https://github.com/user-attachments/assets/8b175165-b30c-47b8-a85f-a454044e6820
-   
-   ![RealtimePAUT GPU All Mode](https://github.com/user-attachments/assets/ad69d357-cdf9-4876-a386-0e49341529ce)
-
-
-
-
 
 
 - **Render Performance**:
