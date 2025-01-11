@@ -2,8 +2,10 @@
 
 
 ## Results (Ongoing)
-   https://github.com/user-attachments/assets/8b175165-b30c-47b8-a85f-a454044e6820
-   
+
+https://github.com/user-attachments/assets/5e93d6a6-586f-4af1-8c2d-9144a7439617
+
+
    ![RealtimePAUT GPU All Mode](https://github.com/user-attachments/assets/ad69d357-cdf9-4876-a386-0e49341529ce)
    
 ## Overview
@@ -31,6 +33,7 @@ Note: The source code is private due to privacy policies. For inquiries, contact
 - Designed for high scalability with support for increased resolution and advanced features.
 
 ### 2. Robot Control in Realtime
+- Inverse Kinematics for 6 FreeBase Robot RealTime
 - Real-time robotic arm control with IPC and C++.
 - Vision-based detection for autonomous PAUT scanning.
 
