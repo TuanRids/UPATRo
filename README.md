@@ -44,7 +44,14 @@ This project involves developing a cutting-edge system for real-time 3D visualiz
   - Planned development of a custom Ring-0 kernel driver to significantly reduce data transfer latency (current bottleneck at ~1.8ms).
   - Direct memory mapping to kernel space for ultra-low latency data handling and optimized real-time performance.
 
+- **Custom High-Performance Data Format for PAUT Data:**
+  - Designed a custom binary data format optimized for real-time PAUT data streaming, replacing traditional HDF5 to minimize I/O overhead.
+  - Achieves lower latency and faster data access by using a lightweight binary structure, optimized for sequential writes and memory-mapped reads.
+  - Implements chunked data writing (~10MB per chunk) for efficient large-scale data handling, reducing memory footprint.
+  - Directly integrates with GPU-accelerated processing, improving real-time visualization and computational performance.
+  - Tailored for low-latency robotics & high-speed scanning, outperforming standard industrial storage formats in real-time performance.
 ---
+
 
 ## Current Performance Benchmarks
 - **Rendering & Visualization:**
