@@ -36,10 +36,6 @@ This project involves developing a cutting-edge system for real-time 3D visualiz
   - Implements automated object detection with OpenCV and deep-learning methods to dynamically determine scan coordinates.
   - Real-time adaptive scanning for objects without pre-defined coordinates.
 
-- **CUDA-Accelerated FEM Integration:**
-  - Integrates Finite Element Method (FEM) simulation directly into the PAUT processing pipeline.
-  - Utilizes CUDA parallel computation for ultra-fast FEM analysis, improving overall accuracy and speed.
-
 - **Robotics Integration & Custom Algorithm Development:**
   - Fully autonomous robotic integration with PAUT, removing dependency on traditional encoders.
   - Developed custom algorithms for real-time synchronization between PAUT data acquisition and robotic control.
