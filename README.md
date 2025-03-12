@@ -26,7 +26,7 @@ This project involves developing a cutting-edge system for real-time 3D visualiz
 - **Real-time PAUT Data Visualization:**
   - High-performance GPU rendering using Vulkan and CUDA.
   - Achieves real-time processing at an exceptionally low frame time (~0.5ms/frame, ~2000 FPS).
-  - Manages large-scale rendering across multiple view buffers, totaling over 1.5 million pixels per frame.
+  - Manages large-scale rendering across multiple view buffers, current size 656x1788 (not maximum) which is totaling over 1.1 million pixels per frame.
 
 - **Advanced Robotics Integration (Encoder-free):**
   - Developed a custom algorithm to synchronize robotic movements with PAUT scans, eliminating the need for traditional encoders.
@@ -58,7 +58,7 @@ This project involves developing a cutting-edge system for real-time 3D visualiz
 ---
 
 ## Technologies Used
-- **Languages & Frameworks:** Modern C++23, CUDA, Vulkan, OpenGL
+- **Languages & Frameworks:** Modern C++23, CUDA, OpenGL
 - **Real-time Computing:** CUDA, OpenMP, Multithreading, Memory Management
 - **Computer Vision:** OpenCV, Deep Learning
 - **Robotics, Simulation & Analysis:** Custom algorithms for real-time robot synchronization, accelerated via CUDA
@@ -74,6 +74,7 @@ This project involves developing a cutting-edge system for real-time 3D visualiz
 ---
 
 ## Project Status
+- Duration: R&D in 6 months from concept to complete R&D, with supporting of some members from mechanical engineering.
 - Successfully implemented a fully operational real-time PAUT system integrated with robotics within a 6-month solo R&D period.
 - Current performance surpasses typical industrial standards.
 - Planning advanced optimizations (Ring-0 Driver) to further enhance real-time data acquisition.
