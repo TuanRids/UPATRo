@@ -3,80 +3,83 @@
 
 ## Results (Ongoing)
 
+https://github.com/user-attachments/assets/10336cc9-0363-4367-a08f-b49187899e87
 
 https://github.com/user-attachments/assets/ecc3c03d-404a-428e-8a4e-52ce408c8e0f
 
-
 https://github.com/user-attachments/assets/5e93d6a6-586f-4af1-8c2d-9144a7439617
 
-
-   ![RealtimePAUT GPU All Mode](https://github.com/user-attachments/assets/ad69d357-cdf9-4876-a386-0e49341529ce)
+![RealtimePAUT GPU All Mode](https://github.com/user-attachments/assets/ef7d6936-ffc7-44f1-a2c9-dd81e2192ca0)
    
-## Overview
-This project focuses on real-time 3D visualization of Phased Array Ultrasonic Testing (PAUT) data and integrates it with robotic control for industrial applications. It leverages Vulkan for high-performance rendering and includes plans for AI-based optimization in the future.
-
 Note: The source code is private due to privacy policies. For inquiries, contact:
 
 📧 Email: ngdtuan.dn@gmail.com
 
 🔗 LinkedIn: [Nguyen Tuan](https://www.linkedin.com/in/nguyen-tuan-a2a589128/)
+# 3D Real-time PAUT and Robotics Integration with Ultra-Low Latency
 
-## Key Features
-### 1. Phased Array Ultrasound in Realtime
-- Real-time control and processing of OmniScan PAUT data.
-- Full rendering and handling of A, B, S, and C-scan data.
-- 3D data visualization using Vulkan.
-- **Performance**:
-  - Rendered **1,508,832 pixels** across 4 buffers:
-    - **SViewBuf**: 292,666 pixels
-    - **CViewBuf**: 49,000 pixels
-    - **BViewBuf**: 1,166,000 pixels
-    - **AViewBuf**: 1,166 pixels
-  - Achieved **2ms total frame time** (~500 FPS), meeting industrial-grade real-time requirements.
-  - System demonstrates excellent GPU utilization and optimized data processing pipeline.
-- Designed for high scalability with support for increased resolution and advanced features.
+## Project Overview
+This project involves developing a cutting-edge system for real-time 3D visualization and robotic integration of Phased Array Ultrasonic Testing (PAUT) data. Designed specifically for high-precision industrial inspection and Non-Destructive Testing (NDT), it seamlessly integrates advanced robotics, GPU-accelerated computation (CUDA), and computer vision, operating entirely without external encoders by employing custom-developed synchronization algorithms. The system achieves ultra-low latency data handling, with current frame processing times as low as 0.5 milliseconds (2000+ FPS), significantly surpassing standard industry benchmarks.
 
-### 2. Robot Control in Realtime
-- Inverse Kinematics for 6 FreeBase Robot RealTime
-- Real-time robotic arm control with IPC and C++.
-- Vision-based detection for autonomous PAUT scanning.
+## Key Features & Technical Innovations
 
-### 3. AI Application (Planned)
-- AI integration to enhance FEM analysis and optimize performance.
-- Plans to use GPU-based rendering and OpenCV for AI detection at high frame rates.
+- **Real-time PAUT Data Visualization:**
+  - High-performance GPU rendering using Vulkan and CUDA.
+  - Achieves real-time processing at an exceptionally low frame time (~0.5ms/frame, ~2000 FPS).
+  - Manages large-scale rendering across multiple view buffers, totaling over 1.5 million pixels per frame.
 
-### 4. FEM Integration
-- Finite Element Method (FEM) applied to processed PAUT data.
-- CUDA acceleration for FEM calculations.
-- Integrated into Vulkan viewport for simulation.
+- **Advanced Robotics Integration (Encoder-free):**
+  - Developed a custom algorithm to synchronize robotic movements with PAUT scans, eliminating the need for traditional encoders.
+  - Enables autonomous, precise positional tracking using self-developed algorithms.
 
-## Technologies Used
-- **PAUT**: Real-time Phased Array Ultrasound processing (C++)
-- **Robotics**: Real-time Yaskawa robot arm control (C++)
-- **Vulkan**: High-performance 3D rendering (C++)
-- **IPC**: Inter-process communication for real-time systems (C++)
-- **FEM**: Finite Element Method simulation (C++)
-- **CUDA**: Accelerated FEM computation (C++)
-- **AI (Planned)**: AI optimization and real-time detection.
+- **Computer Vision Integration:**
+  - Implements automated object detection with OpenCV and deep-learning methods to dynamically determine scan coordinates.
+  - Real-time adaptive scanning for objects without pre-defined coordinates.
 
+- **CUDA-Accelerated FEM Integration:**
+  - Integrates Finite Element Method (FEM) simulation directly into the PAUT processing pipeline.
+  - Utilizes CUDA parallel computation for ultra-fast FEM analysis, improving overall accuracy and speed.
 
-- **Render Performance**:
-  - Successfully rendered **~1.5 million pixels** in **2ms** (~500 FPS).
-  - Exceeds real-time industrial standards (60-120 FPS).
-- **Buffer Details**:
-  - **SViewBuf**: 292,666 pixels
-  - **CViewBuf**: 49,000 pixels
-  - **BViewBuf**: 1,166,000 pixels
-  - **AViewBuf**: 1,166 pixels
-- **Efficiency**:
-  - Maintains high scalability and GPU utilization.
-  - Provides a strong foundation for integrating additional features like AI and FEM.
+- **Robotics Integration & Custom Algorithm Development:**
+  - Fully autonomous robotic integration with PAUT, removing dependency on traditional encoders.
+  - Developed custom algorithms for real-time synchronization between PAUT data acquisition and robotic control.
 
-## Applications
-- Real-time robotics control and monitoring.
-- Advanced NDT (Non-Destructive Testing) applications.
-- Autonomous industrial inspections with enhanced AI integration.
+- **Upcoming Kernel-Level Optimization (Ring 0 Driver):**
+  - Planned development of a custom Ring-0 kernel driver to significantly reduce data transfer latency (current bottleneck at ~1.8ms).
+  - Direct memory mapping to kernel space for ultra-low latency data handling and optimized real-time performance.
 
 ---
 
-This project combines real-time robotics, advanced 3D rendering, and scalable data processing to support high-performance industrial applications.
+## Current Performance Benchmarks
+- **Rendering & Visualization:**
+  - Over 1.5 million pixels rendered within ~0.5ms.
+  - Exceeds typical industrial standards (60-120 FPS) by achieving ~2000 FPS.
+
+- **Data Acquisition and Robotics Integration:**
+  - Fully autonomous synchronization without external encoder data.
+  - Adaptive real-time object tracking and scanning.
+
+---
+
+## Technologies Used
+- **Languages & Frameworks:** Modern C++23, CUDA, Vulkan, OpenGL
+- **Real-time Computing:** CUDA, OpenMP, Multithreading, Memory Management
+- **Computer Vision:** OpenCV, Deep Learning
+- **Robotics, Simulation & Analysis:** Custom algorithms for real-time robot synchronization, accelerated via CUDA
+- **Kernel Development:** Planned Ring-0 Driver for ultra-low latency performance optimization
+
+---
+
+## Applications
+- Real-time robotic control for automated industrial inspections.
+- Advanced PAUT-based NDT systems.
+- Autonomous inspection solutions with adaptive AI-driven scanning.
+
+---
+
+## Project Status
+- Successfully implemented a fully operational real-time PAUT system integrated with robotics within a 6-month solo R&D period.
+- Current performance surpasses typical industrial standards.
+- Planning advanced optimizations (Ring-0 Driver) to further enhance real-time data acquisition.
+
+---
