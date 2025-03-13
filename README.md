@@ -47,17 +47,29 @@ This project implements an advanced **real-time 3D Phased Array Ultrasonic Testi
 ### **Upcoming Kernel-Level Optimization (Ring-0 Driver):**
 - Planned **Ring-0 kernel driver** for direct memory access and reduced system-level data transfer latency.
 - **Bypassing traditional OS I/O bottlenecks** to achieve sub-millisecond data handling performance.
+  
+# Performance Benchmarks
+### **Summary**
+This benchmark reflects the latest performance of our PAUT-GPU pipeline after optimization.
 
-## **Performance Benchmarks**
 | **Metric** | **Result** |
-|------------|------------|
-| **PAUT Data Throughput** | 60 MB/s |
-| **PAUT → Host Latency** | 1.7 ms (Olympus SDK limit) |
-| **GPU Processing Time (CUDA)** | 1.3 ms |
-| **Total Frame Time** | 0.5 - 1.7 ms |
-| **Max Achievable Throughput** | 60 MB/s |
-| **Rendering Resolution** | 656 × 1788 (~1.1 MPixels/frame) |
-| **Render All scanning Results FPS (Frames Per Second)** | ~2000 FPS |
+|------------|-----------|
+| **PAUT Data Throughput** | **60 MB/s (Hardware Limit)** |
+| **Total HPC Frame Time** | **0.48 ms** |
+| **FrameRate Hz** | **401 Hz (Limited by PAUT hardware)** |
+| **Max Achievable Throughput MB/s** | **311 MB/s (Theoretical based on Current Frame Time)** |
+| **Rendering Resolution** | **656 × 1788 (~1.1 MPixels/frame)** |
+
+### **Pipeline Optimization**
+- **Double Buffering** implemented → Reduces GPU idle time.
+- **Triple Buffering** enabled → Achieves **max throughput (311 MB/s theoretically)**.
+- **Post-processing & Rendering moved to separate threads** → Minimizes blocking.
+- **Final bottleneck:** **PAUT SDK (Olympus) limits data transfer to 60 MB/s.**
+
+### Next Steps for Optimization
+- The **current limit is hardware-bound**. Further optimization requires **changes in PAUT SDK** or a **faster hardware interface**.
+- **GPU is NOT the bottleneck anymore**. Further improvements must focus on **PAUT Data Acquisition speed**.
+- If new hardware or firmware updates become available, testing with a higher bandwidth data transfer is recommended.
 
 ## **Technologies Used**
 - **Programming:** Modern **C++23, CUDA**
