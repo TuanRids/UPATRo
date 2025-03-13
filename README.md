@@ -25,8 +25,8 @@ This project implements an advanced **real-time 3D Phased Array Ultrasonic Testi
 ## **Key Features & Innovations**
 ### **Real-Time GPU Processing:**
 - Full **GPU-based PAUT processing pipeline**, eliminating redundant CPU-GPU data transfers.
-- Handles **60 MB/s throughput** from PAUT devices with minimal latency.
-- **Advanced Vulkan + CUDA rendering** for high-performance visualization.
+- Handles **60 MB/s throughput** from PAUT devices, touch to limitation of hardware PAUT devices.
+- **Advanced openGL + CUDA rendering** for high-performance visualization.
 
 ### **Advanced Robotics Integration (Encoder-Free):**
 - Custom **algorithm synchronizes robotic motion** with PAUT scanning without traditional encoders.
@@ -36,7 +36,8 @@ This project implements an advanced **real-time 3D Phased Array Ultrasonic Testi
 ### **Optimized CUDA Performance:**
 - **Full parallelization** using CUDA Streams and asynchronous pipelines.
 - Minimized **host-device memory transfers** for reduced latency.
-
+- Triple Buffering technique of High Performance Computing process throughput over 300Mb/s
+  
 ### **High-Performance Data Management & I/O Optimization:**
 - **Custom PAUT data format**, replacing traditional HDF5 to minimize I/O overhead.
 - **Optimized binary data structure** for low-latency memory access and real-time processing.
@@ -57,7 +58,7 @@ This benchmark reflects the latest performance of our PAUT-GPU pipeline after op
 | **PAUT Data Throughput** | **60 MB/s (Hardware Limit)** |
 | **Total HPC Frame Time** | **0.48 ms** |
 | **FrameRate Hz** | **401 Hz (Limited by PAUT hardware)** |
-| **Max Achievable Throughput MB/s** | **311 MB/s (Theoretical based on Current Frame Time)** |
+| **Max Achievable Throughput MB/s** | **311 MB/s (Midle High Performance Computing)** |
 | **Rendering Resolution** | **656 × 1788 (~1.1 MPixels/frame)** |
 
 ### **Pipeline Optimization**
@@ -69,7 +70,7 @@ This benchmark reflects the latest performance of our PAUT-GPU pipeline after op
 ### Next Steps for Optimization
 - The **current limit is hardware-bound**. Further optimization requires **changes in PAUT SDK** or a **faster hardware interface**.
 - **GPU is NOT the bottleneck anymore**. Further improvements must focus on **PAUT Data Acquisition speed**.
-- If new hardware or firmware updates become available, testing with a higher bandwidth data transfer is recommended.
+- Testing with a higher bandwidth data transfer is recommended if new hardware or firmware updates become available.
 
 ## **Technologies Used**
 - **Programming:** Modern **C++23, CUDA**
@@ -92,8 +93,8 @@ This benchmark reflects the latest performance of our PAUT-GPU pipeline after op
 - **Current implementation surpasses** standard industry benchmarks, setting a new standard for **ultra-low latency PAUT processing**.
 
 ## **Why This System Stands Out**
-- **Achieves real-time PAUT inspection at hardware limits (0.5 - 1.7 ms/frame).**
-- **Pioneers full GPU-side processing** to reach limit latency.
+- **Achieves real-time PAUT inspection at hardware limits 60Mb/s throughput.**
+- **Pioneers full GPU-side processing** to reach the limit latency, touch to High Performance Computing 300Mb/s.
 - **Innovative encoder-free robotic synchronization** and **AI-driven adaptive scanning**.
 - **Optimized I/O management** for real-time high-speed PAUT data handling.
 
