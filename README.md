@@ -16,74 +16,74 @@ Note: The source code is private due to privacy policies. For inquiries, contact
 📧 Email: ngdtuan.dn@gmail.com
 
 🔗 LinkedIn: [Nguyen Tuan](https://www.linkedin.com/in/nguyen-tuan-a2a589128/)
-# 3D Real-time PAUT and Robotics Integration with Ultra-Low Latency
 
-## Project Overview
-This project involves developing a cutting-edge system for real-time 3D visualization and robotic integration of Phased Array Ultrasonic Testing (PAUT) data. Designed specifically for high-precision industrial inspection and Non-Destructive Testing (NDT), it seamlessly integrates advanced robotics, GPU-accelerated computation (CUDA), and computer vision, operating entirely without external encoders by employing custom-developed synchronization algorithms. The system achieves ultra-low latency data handling, with current frame processing times as low as 0.5 milliseconds (2000+ FPS), significantly surpassing standard industry benchmarks.
+# **3D Real-time PAUT & Robotics Integration – Ultra-Low Latency GPU Processing**
 
-## Key Features & Technical Innovations
+## **Project Overview**
+This project implements an advanced **real-time 3D Phased Array Ultrasonic Testing (PAUT) system**, seamlessly integrated with robotics and accelerated GPU processing (CUDA). Designed for **industrial Non-Destructive Testing (NDT)**, the system achieves ultra-low latency through highly optimized CUDA processing, custom encoder-free robotic synchronization, and a **high-performance I/O management system** for real-time PAUT data streaming.
 
-- **Real-time PAUT Data Visualization:**
-  - High-performance GPU rendering using Vulkan and CUDA.
-  - Achieves real-time processing at an exceptionally low frame time (~0.5ms/frame, ~2000 FPS).
-  - Manages large-scale rendering across multiple view buffers, current size 656x1788 (not maximum) which is totaling over 1.1 million pixels per frame.
+## **Key Features & Innovations**
+### **Real-Time GPU Processing:**
+- Full **GPU-based PAUT processing pipeline**, eliminating redundant CPU-GPU data transfers.
+- Handles **60 MB/s throughput** from PAUT devices with minimal latency.
+- **Advanced Vulkan + CUDA rendering** for high-performance visualization.
 
-- **Advanced Robotics Integration (Encoder-free):**
-  - Developed a custom algorithm to synchronize robotic movements with PAUT scans, eliminating the need for traditional encoders.
-  - Enables autonomous, precise positional tracking using self-developed algorithms.
+### **Advanced Robotics Integration (Encoder-Free):**
+- Custom **algorithm synchronizes robotic motion** with PAUT scanning without traditional encoders.
+- **Adaptive real-time scanning** using OpenCV and deep learning, allowing autonomous detection and tracking of objects without pre-defined coordinates.
+- Supports **high-speed robotic movement synchronization**, reducing scan time while maintaining accuracy.
 
-- **Computer Vision Integration:**
-  - Implements automated object detection with OpenCV and deep-learning methods to dynamically determine scan coordinates.
-  - Real-time adaptive scanning for objects without pre-defined coordinates.
+### **Optimized CUDA Performance:**
+- **Full parallelization** using CUDA Streams and asynchronous pipelines.
+- Minimized **host-device memory transfers** for reduced latency.
 
-- **Robotics Integration & Custom Algorithm Development:**
-  - Fully autonomous robotic integration with PAUT, removing dependency on traditional encoders.
-  - Developed custom algorithms for real-time synchronization between PAUT data acquisition and robotic control.
+### **High-Performance Data Management & I/O Optimization:**
+- **Custom PAUT data format**, replacing traditional HDF5 to minimize I/O overhead.
+- **Optimized binary data structure** for low-latency memory access and real-time processing.
+- Implements **chunked data writing (~10MB per chunk)** for efficient large-scale data handling.
+- **Direct GPU memory mapping** for improved real-time visualization and computational performance.
+- Tailored for **low-latency robotics & high-speed scanning**, outperforming standard industrial storage formats.
 
-- **Upcoming Kernel-Level Optimization (Ring 0 Driver):**
-  - Planned development of a custom Ring-0 kernel driver to significantly reduce data transfer latency (current bottleneck at ~1.8ms).
-  - Direct memory mapping to kernel space for ultra-low latency data handling and optimized real-time performance.
+### **Upcoming Kernel-Level Optimization (Ring-0 Driver):**
+- Planned **Ring-0 kernel driver** for direct memory access and reduced system-level data transfer latency.
+- **Bypassing traditional OS I/O bottlenecks** to achieve sub-millisecond data handling performance.
 
-- **Custom High-Performance Data Format for PAUT Data:**
-  - Designed a custom binary data format optimized for real-time PAUT data streaming, replacing traditional HDF5 to minimize I/O overhead.
-  - Achieves lower latency and faster data access by using a lightweight binary structure, optimized for sequential writes and memory-mapped reads.
-  - Implements chunked data writing (~10MB per chunk) for efficient large-scale data handling, reducing memory footprint.
-  - Directly integrates with GPU-accelerated processing, improving real-time visualization and computational performance.
-  - Tailored for low-latency robotics & high-speed scanning, outperforming standard industrial storage formats in real-time performance.
+## **Performance Benchmarks**
+| **Metric** | **Result** |
+|------------|------------|
+| **PAUT Data Throughput** | 60 MB/s |
+| **PAUT → Host Latency** | 1.7 ms (Olympus SDK limit) |
+| **GPU Processing Time (CUDA)** | 1.3 ms |
+| **Total Frame Time** | 0.5 - 1.7 ms |
+| **Max Achievable Throughput** | 60 MB/s |
+| **Rendering Resolution** | 656 × 1788 (~1.1 MPixels/frame) |
+| **Render All scanning Results FPS (Frames Per Second)** | ~2000 FPS |
+
+## **Technologies Used**
+- **Programming:** Modern **C++23, CUDA**
+- **Real-time Processing:** CUDA, OpenMP, Multi-threading
+- **Computer Vision & AI:** OpenCV, Deep Learning
+- **Robotics Integration:** Custom algorithms for encoder-free robotic control
+- **Kernel-Level Optimizations (Upcoming):** Ring-0 driver for further latency reductions
+- **Data Management & Storage:** Optimized **binary PAUT format, chunked data writing, memory-mapped storage**
+
+## **Applications**
+- **High-precision real-time NDT inspection**
+- **Autonomous robotics scanning**
+- **Advanced industrial inspections requiring minimal latency**
+- **AI-driven adaptive scanning for real-time object tracking**
+
+## **Project Status**
+- **Solo-developed** over 6 months with mechanical engineering support.
+- **Enhanced real-time data processing pipeline** with **optimized I/O and GPU rendering**.
+- **Planned future enhancements** with **kernel-level optimizations (Ring-0 Driver)**.
+- **Current implementation surpasses** standard industry benchmarks, setting a new standard for **ultra-low latency PAUT processing**.
+
+## **Why This System Stands Out**
+- **Achieves real-time PAUT inspection at hardware limits (0.5 - 1.7 ms/frame).**
+- **Pioneers full GPU-side processing** to reach limit latency.
+- **Innovative encoder-free robotic synchronization** and **AI-driven adaptive scanning**.
+- **Optimized I/O management** for real-time high-speed PAUT data handling.
+
 ---
-
-
-## Current Performance Benchmarks
-- **Rendering & Visualization:**
-  - Over 1.5 million pixels rendered within ~0.5ms.
-  - Exceeds typical industrial standards (60-120 FPS) by achieving ~2000 FPS.
-
-- **Data Acquisition and Robotics Integration:**
-  - Fully autonomous synchronization without external encoder data.
-  - Adaptive real-time object tracking and scanning.
-
----
-
-## Technologies Used
-- **Languages & Frameworks:** Modern C++23, CUDA, OpenGL
-- **Real-time Computing:** CUDA, OpenMP, Multithreading, Memory Management
-- **Computer Vision:** OpenCV, Deep Learning
-- **Robotics, Simulation & Analysis:** Custom algorithms for real-time robot synchronization, accelerated via CUDA
-- **Kernel Development:** Planned Ring-0 Driver for ultra-low latency performance optimization
-
----
-
-## Applications
-- Real-time robotic control for automated industrial inspections.
-- Advanced PAUT-based NDT systems.
-- Autonomous inspection solutions with adaptive AI-driven scanning.
-
----
-
-## Project Status
-- Duration: R&D in 6 months from concept to complete R&D, with supporting of some members from mechanical engineering.
-- Successfully implemented a fully operational real-time PAUT system integrated with robotics within a 6-month solo R&D period.
-- Current performance surpasses typical industrial standards.
-- Planning advanced optimizations (Ring-0 Driver) to further enhance real-time data acquisition.
-
----
+This project pushes the boundaries of real-time industrial inspection, combining **ultra-low latency GPU processing, autonomous robotics integration, and optimized I/O management** into one high-performance system.
