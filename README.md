@@ -18,9 +18,11 @@ Note: The source code is private due to privacy policies. For inquiries, contact
 🔗 LinkedIn: [Nguyen Tuan](https://www.linkedin.com/in/nguyen-tuan-a2a589128/)
 
 # **3D Real-time PAUT & Robotics Integration – Ultra-Low Latency GPU Processing**
+### Phased Array Ultrasound Testing Industry integrating with Robotics
+### HPC System Engineering (Industry, Real-Time, GPU Processing)
 
 ## **Project Overview**
-This project implements an advanced **real-time 3D Phased Array Ultrasonic Testing (PAUT) system**, seamlessly integrated with robotics and accelerated GPU processing (CUDA). Designed for **industrial Non-Destructive Testing (NDT)**, the system achieves ultra-low latency through highly optimized CUDA processing, custom encoder-free robotic synchronization, and a **High-Performance GPU Data Management & I/O Optimization** for real-time PAUT data streaming.
+This project is an example of **HPC System Engineering (Industry, Real-Time, GPU Processing)**, implementing an advanced **real-time 3D Phased Array Ultrasonic Testing (PAUT) system**, seamlessly integrated with robotics and accelerated GPU processing (CUDA). Designed for **industrial Non-Destructive Testing (NDT)**, the system achieves ultra-low latency through highly optimized CUDA processing, custom encoder-free robotic synchronization, and a **High-Performance GPU Data Management & I/O Optimization** for real-time PAUT data streaming.
 
 ## **Key Features & Innovations**
 ### **Real-Time GPU Processing:**
@@ -75,9 +77,10 @@ This benchmark reflects the latest performance of our PAUT-GPU pipeline after op
 ## **Technologies Used**
 - **Programming:** Modern **C++23, CUDA**
 - **Real-time Processing:** CUDA, OpenMP, Multi-threading
+- **HPC System Engineering:** Industry, Real-Time, GPU Processing ✅
 - **Computer Vision & AI:** OpenCV, Deep Learning
 - **Robotics Integration:** Custom algorithms for encoder-free robotic control
-- **Kernel-Level Optimizations (Upcoming):** Ring-0 driver for further latency reductions
+- **Kernel-Level Optimizations (Upcoming):** Planned Ring-0 driver to optimize PAUT data transfer throughput by reducing Olympus Driver overhead.
 - **Data Management & Storage:** Optimized **binary PAUT format, chunked data writing, memory-mapped storage**
 
 ## **Applications**
