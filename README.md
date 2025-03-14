@@ -100,6 +100,7 @@ This benchmark reflects the latest performance of our PAUT-GPU pipeline after op
 - **Pioneers full GPU-side processing** to reach the limit latency, touch to High Performance Computing 300Mb/s.
 - **Innovative encoder-free robotic synchronization** and **AI-driven adaptive scanning**.
 - **Optimized I/O management** for real-time high-speed PAUT data handling.
+- **Processes frames 12.5×** faster than the PAUT hardware requirement (2.5ms → 0.2ms), ensuring ultra-low latency.
 
 ---
 This project pushes the boundaries of real-time industrial inspection, combining **ultra-low latency GPU processing, autonomous robotics integration, and optimized I/O management** into one high-performance system.
