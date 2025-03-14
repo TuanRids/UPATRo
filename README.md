@@ -20,7 +20,7 @@ Note: The source code is private due to privacy policies. For inquiries, contact
 # **3D Real-time PAUT & Robotics Integration – Ultra-Low Latency GPU Processing**
 
 ## **Project Overview**
-This project implements an advanced **real-time 3D Phased Array Ultrasonic Testing (PAUT) system**, seamlessly integrated with robotics and accelerated GPU processing (CUDA). Designed for **industrial Non-Destructive Testing (NDT)**, the system achieves ultra-low latency through highly optimized CUDA processing, custom encoder-free robotic synchronization, and a **high-performance I/O management system** for real-time PAUT data streaming.
+This project implements an advanced **real-time 3D Phased Array Ultrasonic Testing (PAUT) system**, seamlessly integrated with robotics and accelerated GPU processing (CUDA). Designed for **industrial Non-Destructive Testing (NDT)**, the system achieves ultra-low latency through highly optimized CUDA processing, custom encoder-free robotic synchronization, and a **High-Performance GPU Data Management & I/O Optimization** for real-time PAUT data streaming.
 
 ## **Key Features & Innovations**
 ### **Real-Time GPU Processing:**
