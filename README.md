@@ -36,7 +36,7 @@ This project implements an advanced **real-time 3D Phased Array Ultrasonic Testi
 ### **Optimized CUDA Performance:**
 - **Full parallelization** using CUDA Streams and asynchronous pipelines.
 - Minimized **host-device memory transfers** for reduced latency.
-- triple-buffered staging technique of High Performance Computing process throughput over 300Mb/s
+- triple-buffered staging technique of High-Performance GPU Computing process throughput over 300Mb/s
   
 ### **High-Performance Data Management & I/O Optimization:**
 - **Custom PAUT data format**, replacing traditional HDF5 to minimize I/O overhead.
@@ -56,9 +56,9 @@ This benchmark reflects the latest performance of our PAUT-GPU pipeline after op
 | **Metric** | **Result** |
 |------------|-----------|
 | **PAUT Data Throughput** | **60 MB/s (Hardware Limit)** |
-| **Total HPC Frame Time** | **0.48 ms** |
+| **Total HPC Frame Time** | **0.2 ms** |
 | **FrameRate Hz** | **401 Hz (Limited by PAUT hardware)** |
-| **Max Achievable Throughput MB/s** | **311 MB/s (Midle High Performance Computing)** |
+| **Max Achievable Throughput MB/s** | **~750 MB/s (High-Performance GPU Computing)** |
 | **Rendering Resolution** | **656 × 1788 (~1.1 MPixels/frame)** |
 
 ### **Pipeline Optimization**
