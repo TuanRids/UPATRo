@@ -34,8 +34,8 @@ This project is an example of **HPC System Engineering (Industry, Real-Time, GPU
 - Advanced OpenGL + CUDA rendering for high-performance visualization.  
 
 #### **2. Advanced Robotics Integration (Encoder-Free)**
-- Custom algorithm synchronizes robotic motion with PAUT scanning without traditional encoders.  
-- Adaptive real-time scanning using OpenCV and deep learning, allowing autonomous detection and tracking of objects without pre-defined coordinates.  
+- **Innovative encoder-free robotic synchronization with PAUT**: Custom algorithm synchronizes robotic motion with PAUT scanning without traditional encoders.  
+- **AI-driven adaptive scanning**: Adaptive real-time scanning using OpenCV and deep learning, allowing autonomous detection and tracking of objects without pre-defined coordinates.  
 - Supports high-speed robotic movement synchronization, reducing scan time while maintaining accuracy.  
 
 #### **3. Optimized CUDA Performance & High-Performance Computing**
@@ -100,13 +100,6 @@ This benchmark reflects the latest performance of our PAUT-GPU pipeline after op
 - **Enhanced real-time data processing pipeline** with **optimized I/O and GPU rendering**.
 - **Planned future enhancements** with **kernel-level optimizations (Ring-0 Driver)**.
 - **Current implementation surpasses** standard industry benchmarks, setting a new standard for **ultra-low latency PAUT processing**.
-
-## **Why This System Stands Out**
-- **Achieves real-time PAUT inspection at hardware limits 60Mb/s throughput.**
-- **Pioneers full GPU-side processing** to reach the limit latency, touch to High Performance Computing 300Mb/s.
-- **Innovative encoder-free robotic synchronization** and **AI-driven adaptive scanning**.
-- **Optimized I/O management** for real-time high-speed PAUT data handling.
-- **Processes frames 12.5×** faster than the PAUT hardware requirement (2.5ms → 0.2ms), ensuring ultra-low latency.
 
 ---
 This project pushes the boundaries of real-time industrial inspection, combining **ultra-low latency GPU processing, autonomous robotics integration, and optimized I/O management** into one high-performance system.
