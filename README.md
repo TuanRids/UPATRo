@@ -36,7 +36,7 @@ This project implements an advanced **real-time 3D Phased Array Ultrasonic Testi
 ### **Optimized CUDA Performance:**
 - **Full parallelization** using CUDA Streams and asynchronous pipelines.
 - Minimized **host-device memory transfers** for reduced latency.
-- triple-buffered staging technique of High-Performance GPU Computing process throughput over 300Mb/s
+- triple-buffered staging technique of High-Performance GPU Computing process throughput over 700Mb/s
   
 ### **High-Performance Data Management & I/O Optimization:**
 - **Custom PAUT data format**, replacing traditional HDF5 to minimize I/O overhead.
