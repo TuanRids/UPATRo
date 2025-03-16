@@ -60,7 +60,7 @@ This project demonstrates **real-time 3D PAUT scanning with GPU acceleration**, 
 |------------|-----------|  
 | **CPU/GPU** | **i7 14700, RTX 4060Ti. Throughput 100%** |  
 | **PAUT Data Throughput** | **60 MB/s (Hardware Limit)** |  
-| **Total GPU Processing Time** | **~ 0.02 - 0.029 ms** |  
+| **Total GPU Processing Time** | **0.02 - 0.029 ms** |  
 | **FrameRate** | **401 Hz (PAUT-limited)** |  
 | **Running Throughput** | **5 ~ 7.3 Gb/s** |  
 | **Rendering Resolution** | **656 × 1788 (~1.1 MPixels/frame)** |  
