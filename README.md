@@ -2,6 +2,7 @@
 
 
 ## Results (Ongoing)
+![Architecture PAUTVis drawio](https://github.com/user-attachments/assets/5c109c0f-47be-4b25-bf87-4c116c2a1f3c)
 
 https://github.com/user-attachments/assets/10336cc9-0363-4367-a08f-b49187899e87
 
