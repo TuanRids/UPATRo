@@ -1,7 +1,6 @@
 # Real-Time Phased Array Ultrasound: Robotic Integration and Vision Detection
 
 ## Results (Ongoing)
-![Architecture PAUTVis drawio](https://github.com/user-attachments/assets/5c109c0f-47be-4b25-bf87-4c116c2a1f3c)
 
 https://github.com/user-attachments/assets/10336cc9-0363-4367-a08f-b49187899e87
 
@@ -17,87 +16,97 @@ Note: The source code is private due to privacy policies. For inquiries, contact
 
 🔗 LinkedIn: [Nguyen Tuan](https://www.linkedin.com/in/nguyen-tuan-a2a589128/)
 ---
-# **Real-Time Phased Array Ultrasound: Robotic Integration and Vision Detection – Ultra-Low Latency GPU Processing**  
-### **Phased Array Ultrasound Testing (PAUT) with High-Performance GPU Acceleration**  
+# Real-Time Phased Array Ultrasound: Robotic Integration and Vision Detection – GPU-Accelerated Low-Latency Processing
 
-## **Project Overview**  
-This project demonstrates **real-time PAUT scanning with GPU acceleration**, integrated with robotics and vision for **ultra-low latency industrial Non-Destructive Testing (NDT)**. By optimizing **CUDA processing, robotics synchronization, and I/O**, the system reaches **2.91 Gb/s throughput** and **401 Hz framerate**, significantly outperforming standard PAUT hardware.  
+### Phased Array Ultrasound Testing (PAUT) for Real-Time Industrial Non-Destructive Testing (NDT)
 
----
+## Project Overview
 
-### **Key Features & Innovations**  
-
-#### **1. Ultra-Low Latency Real-Time GPU Processing**  
-- **Fully optimized CUDA pipeline** → Removes CPU bottlenecks and redundant host-device transfers.  
-- **Real-time PAUT scanning at 60 MB/s (hardware limit)**, **70x ~ 120x faster than PAUT hardware requirements (2.5ms to 0.02 ~ 0.029 ms)**.  
-- Advanced OpenGL + CUDA rendering for seamless visualization.  
-
-#### **2. Robotics Integration (Encoder-Free Synchronization)**  
-- **No physical encoder required** → Synchronizes robotic motion with PAUT using real-time image analysis.  
-- **AI-driven adaptive scanning** → Automatically detects and tracks objects, reducing scan time.  
-- **Full robotic synchronization with real-time adjustments**.  
-
-#### **3. Optimized CUDA Performance for HPC**  
-- **GPU-side computation eliminates CPU overhead**.  
-- **Triple-buffered staging achieves 5 ~ 7.3Gb/s throughput**.  
-- **Minimized memory transfers** using pinned memory & asynchronous CUDA streams.  
-
-#### **4. High-Performance Data Management & I/O Optimization**  
-- Custom PAUT binary format → Replaces HDF5 for **low-latency access**.  
-- **Efficient data streaming & chunked writing (10MB chunks)** for real-time processing.  
-- **GPU is no longer the bottleneck** → Limited by PAUT SDK (60 MB/s).  
-
-#### **5. PAUT Dependency Challenges on GPU**  
-**PAUT has high computational dependency, making it difficult to fully parallelize on CUDA:**  
- - **Beamforming dependency:** Each beam relies on adjacent beam data for interpolation.  
- - **Memory access bottleneck:** PAUT data is not sequential, leading to non-coalesced GPU memory access.  
- - **Synchronization overhead:** Processing must be staged (Ascan → Beamform → Scanline) to avoid data conflicts.  
+This project implements a GPU-accelerated real-time Phased Array Ultrasound Testing (PAUT) system integrated with robotic control and vision-based object detection. Designed specifically for industrial Non-Destructive Testing (NDT), the system meets stringent low-latency and throughput requirements. Optimizations in CUDA processing, data streaming, and synchronization enable sustained scanning at the hardware-constrained input rate of 60 MB/s, with a practical data acquisition interval of 1.7 ms per frame (~588 Hz).
 
 ---
 
-## **Performance Benchmarks**  
-| **Metric** | **Result** |  
-|------------|-----------|  
-| **CPU/GPU** | **i7 14700, RTX 4060Ti. Throughput 100%** |  
-| **PAUT Data Throughput** | **60 MB/s (Hardware Limit)** |  
-| **Total GPU Processing Time** | **0.02 - 0.029 ms** |  
-| **FrameRate** | **401 Hz (PAUT-limited)** |  
-| **Running Throughput** | **5 ~ 7.3 Gb/s** |  
-| **Rendering Resolution** | **656 × 1788 (~1.1 MPixels/frame)** |  
+## Key Features & Innovations
+
+### 1. Low-Latency GPU Processing Pipeline
+- CUDA-based data pipeline reduces CPU overhead and host-device transfer delays.
+- Real-time PAUT scanning achieves sub-millisecond GPU processing latency (~0.15 ms per frame), significantly below PAUT hardware requirements (typical latency 2.5 ms).
+- Integrated OpenGL and CUDA rendering provides smooth, low-latency visualization.
+
+### 2. Encoder-Free Robotic Synchronization
+- Eliminates the need for physical encoders by leveraging real-time GPU-based image analysis.
+- AI-assisted adaptive scanning automatically detects and tracks objects, optimizing inspection time.
+- Real-time synchronization of robot positioning with PAUT data acquisition and analysis.
+
+### 3. CUDA Optimizations for Real-Time Performance
+- GPU-side computation significantly reduces CPU involvement.
+- Triple-buffered asynchronous CUDA streaming minimizes latency and maximizes GPU utilization.
+- Efficient use of pinned memory and concurrent streams improves overall throughput.
+
+### 4. Data Management and I/O Optimizations
+- Custom binary data format optimized for real-time streaming, replacing traditional formats like HDF5.
+- Chunked data streaming (10 MB chunks) maintains low-latency access for immediate processing.
+- GPU performance is effectively balanced, with current limitations primarily from PAUT hardware constraints (60 MB/s input limit).
+
+### 5. Addressing PAUT Beamforming Challenges
+PAUT beamforming poses inherent challenges for GPU parallelization:
+- Beamforming interdependency: each beam calculation depends on adjacent beam data.
+- Non-sequential memory access patterns reduce memory bandwidth utilization due to non-coalesced memory accesses.
+- Pipeline staging (Ascan → Beamforming → Scanline) required to mitigate synchronization overhead.
 
 ---
 
-## **Pipeline Optimizations**  
-✔ **Double Buffering** → Reduces GPU idle time.  
-✔ **Triple-buffered staging** → Achieves **5 Gb/s ~ 7.3 Gb/s throughput**.  
-✔ **Post-processing & Rendering moved to separate threads** → Minimizes blocking.  
-✔ **Final bottleneck:** **PAUT SDK limits data transfer to 60 MB/s.**  
+## Performance Benchmarks
+- **Input Data Rate:** 60 MB/s (PAUT hardware limit)
+- **Frame Acquisition Rate:** 588 Hz (1.7 ms per frame)
+- **Average GPU Processing Latency:** 0.15 ms per frame
+- **Maximum GPU Latency:** 0.35 ms per frame (including infrequent detailed scanline processing)
+- **CPU-side Processing Overhead:** 0.02 ms per frame
+- **Internal GPU Processing Throughput:** 8–10 Gb/s
+- **Bottleneck:** PAUT hardware SDK input limitation (60 MB/s)
 
-## **Next Optimization Steps**  
-➡ The **GPU is no longer the bottleneck**, future improvements focus on **faster PAUT hardware**.  
-➡ **Planned Ring-0 driver optimization** → Bypasses OS-level I/O for sub-millisecond transfers.  
-
----
-
-## **Technologies Used**  
-- **Programming:** Modern **C++23, CUDA**  
-- **Real-time Processing:** CUDA, OpenMP, Multi-threading  
-- **HPC System Engineering:** Low-latency GPU computing  
-- **Computer Vision & AI:** OpenCV, Deep Learning  
-- **Robotics Integration:** Custom encoder-free control algorithms  
-- **Kernel-Level Optimizations (Planned):** Ring-0 driver for **direct GPU access**  
-
-## **Applications**  
- - **Real-time industrial NDT inspection**  
- - **Autonomous robotic scanning**  
- - **AI-driven adaptive object tracking**  
+*Note: Throughput reflects total internal GPU memory operations, distinct from external network or I/O bandwidth.*
 
 ---
 
-## **Project Status**  
- - **Solo-developed over 6 months** with mechanical engineering support
- - **Optimized for real-time GPU processing, robotics**
+## Pipeline Optimizations
+- Double-buffering reduces GPU idle times.
+- Triple-buffering with asynchronous CUDA streams maintains high processing efficiency.
+- Separate threads dedicated to post-processing and visualization to avoid pipeline stalls.
+- Remaining bottleneck identified as hardware input bandwidth limitation (60 MB/s from PAUT hardware SDK).
+
 ---
 
-## **Summary**  
-This project delivers **ultra-low latency PAUT scanning** through **HPC GPU optimization**, **autonomous robotic integration**, and **high-speed data streaming**—pushing the boundaries of real-time industrial inspection.
+## Future Optimization Plans
+- With GPU performance now optimized, future improvements will focus on upgrading PAUT acquisition hardware to exceed the current 60 MB/s input limitation.
+- Planned Ring-0 driver implementation for direct GPU memory access to bypass OS-level latency.
+
+---
+
+## Technologies Used
+- **Programming Languages:** Modern C++23, CUDA
+- **Parallel Computing:** CUDA, OpenMP, Multi-threading
+- **Real-Time Visualization:** CUDA-OpenGL Interop
+- **Computer Vision & AI:** OpenCV, Deep Learning methods
+- **Robotics:** Custom real-time, encoder-free synchronization algorithms
+- **System-Level Optimizations (planned):** Direct GPU access via Ring-0 driver
+
+---
+
+## Applications
+- Industrial real-time Non-Destructive Testing (NDT)
+- Robotic automated scanning and inspection
+- AI-enhanced adaptive object detection and tracking
+
+---
+
+## Project Status
+- Developed independently over six months, with collaborative mechanical engineering support.
+- Optimized specifically for real-time GPU acceleration and robotic integration.
+
+---
+
+## Summary
+This project provides a robust GPU-accelerated real-time PAUT inspection platform, featuring low-latency GPU processing, integrated robotics, and optimized data management, effectively addressing current hardware limitations while enabling advanced real-time industrial inspection workflows.
+
+
