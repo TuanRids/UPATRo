@@ -1,5 +1,4 @@
-# 3D PAUT Visualization and Real-time Robotics Integration
-
+# Real-Time Phased Array Ultrasound: Robotic Integration and Vision Detection
 
 ## Results (Ongoing)
 ![Architecture PAUTVis drawio](https://github.com/user-attachments/assets/5c109c0f-47be-4b25-bf87-4c116c2a1f3c)
@@ -18,11 +17,11 @@ Note: The source code is private due to privacy policies. For inquiries, contact
 
 🔗 LinkedIn: [Nguyen Tuan](https://www.linkedin.com/in/nguyen-tuan-a2a589128/)
 ---
-# **3D Real-time PAUT & Robotics Integration – Ultra-Low Latency GPU Processing**  
+# **Real-Time Phased Array Ultrasound: Robotic Integration and Vision Detection – Ultra-Low Latency GPU Processing**  
 ### **Phased Array Ultrasound Testing (PAUT) with High-Performance GPU Acceleration**  
 
 ## **Project Overview**  
-This project demonstrates **real-time 3D PAUT scanning with GPU acceleration**, integrated with robotics for **ultra-low latency industrial Non-Destructive Testing (NDT)**. By optimizing **CUDA processing, robotics synchronization, and I/O**, the system reaches **2.91 Gb/s throughput** and **401 Hz framerate**, significantly outperforming standard PAUT hardware.  
+This project demonstrates **real-time PAUT scanning with GPU acceleration**, integrated with robotics and vision for **ultra-low latency industrial Non-Destructive Testing (NDT)**. By optimizing **CUDA processing, robotics synchronization, and I/O**, the system reaches **2.91 Gb/s throughput** and **401 Hz framerate**, significantly outperforming standard PAUT hardware.  
 
 ---
 
@@ -96,11 +95,9 @@ This project demonstrates **real-time 3D PAUT scanning with GPU acceleration**, 
 ---
 
 ## **Project Status**  
-✔ **Solo-developed over 6 months** with mechanical engineering support.  
-✔ **Optimized for real-time GPU processing, robotics, and low-latency data management.**  
-✔ **Future plans include** kernel-level optimization (Ring-0) to enhance PAUT data throughput.  
-
+ - **Solo-developed over 6 months** with mechanical engineering support
+ - **Optimized for real-time GPU processing, robotics**
 ---
 
 ## **Summary**  
-This project delivers **ultra-low latency PAUT scanning** through **HPC GPU optimization**, **autonomous robotic integration**, and **high-speed data streaming**—pushing the boundaries of real-time industrial inspection. 🚀
+This project delivers **ultra-low latency PAUT scanning** through **HPC GPU optimization**, **autonomous robotic integration**, and **high-speed data streaming**—pushing the boundaries of real-time industrial inspection.
