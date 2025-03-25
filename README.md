@@ -19,11 +19,12 @@ Note: The source code is private due to privacy policies. For inquiries, contact
 ## Real-Time Phased Array Ultrasound (PAUT): GPU-Accelerated Robotic Integration for Industrial NDT
 
 ### Project Overview
-This project develops a GPU-accelerated real-time Phased Array Ultrasound Testing (PAUT) system integrated with robotic control and simplified vision-assisted positioning, designed specifically for industrial Non-Destructive Testing (NDT). The primary objective is achieving stringent latency and throughput benchmarks essential for high-performance industrial inspections, within hardware-imposed constraints (60 MB/s input rate). Optimized CUDA processing, triple-buffered data streaming, and threshold-based synchronization techniques allow sustained real-time data acquisition at 588 Hz (1.7 ms/frame).
+This project develops a GPU-accelerated real-time Phased Array Ultrasound Testing (PAUT) system integrated with robotic control and simplified vision-assisted positioning, designed specifically for industrial Non-Destructive Testing (NDT). The primary objective is achieving stringent latency and throughput benchmarks essential for high-performance industrial inspections, within hardware-imposed constraints (60 MB/s input rate). Optimized CUDA processing, triple-buffered data streaming, and threshold-based synchronization techniques allow sustained real-time data acquisition from PAUT hardware at 588 Hz (1.7 ms per frame), corresponding to a continuous Ethernet input stream of 60 MB/s.
 ### Key Features and Technical Innovations
 
 #### 1. GPU-Accelerated Low-Latency Pipeline
-- GPU kernel execution latency averages around 0.15 ms/frame, with peak kernel latencies up to ~0.35 ms/frame. Total end-to-end latency may vary depending on data acquisition and pipeline overhead, significantly outperforming standard PAUT hardware latency (~2.5 ms).
+- Total GPU-side processing latency, including both memory transfers and kernel execution, averages ~0.22 ms per frame, as measured using GPU-side timestamp counters.
+- Data transfers are optimized to <0.03 ms via pinned memory and triple-buffered streaming. For reference, CUDA kernel execution alone averages ~0.15 ms/frame, peaking at ~0.35 ms, significantly outperforming standard PAUT hardware latency (~1.7 ms).
 - Asynchronous CUDA execution, triple-buffered streaming, and pinned memory techniques minimize CPU-GPU overhead.
 - CUDA-OpenGL interoperability is implemented to enable efficient data visualization with minimal overhead
 
@@ -45,8 +46,10 @@ This project develops a GPU-accelerated real-time Phased Array Ultrasound Testin
 ### Performance Benchmarks
 - **Input Data Rate:** 60 MB/s (hardware limitation)
 - **Frame Rate:** 588 Hz (1.7 ms/frame)
-- **GPU Latency:** Avg 0.15 ms/frame, Peak 0.35 ms/frame
-- **Internal GPU Throughput:** 10–20 Gb/s (internal GPU memory operations)
+- **Total CPU + GPU Latency:** Avg 0.02 + 0.22 ms/frame (compute + transfer)
+- **GPU Kernel Latency:** Avg 0.15 ms/frame, Peak 0.35 ms/frame
+- **Data Transfer Overhead:** <0.03 ms/frame (triple-buffered)
+- **Internal GPU Throughput:** 8–15 Gb/s (internal GPU memory operations)
 - **Current Limitation:** PAUT hardware SDK input rate
 
 **CUDA Kernel Execution Timeline:** 
@@ -74,7 +77,7 @@ The system utilizes a modular architecture:
 
 ### Future Enhancements
 - Hardware upgrade planned to surpass current 60 MB/s input limitation.
-- Development of Ring-0 drivers enabling direct GPU memory access to further reduce OS-level latency.
+- Development of Ring-0 drivers to enable direct IO triggering from the Yaskawa controller, improving PAUT-robot synchronization and stitching accuracy.
 
 ### Technology Stack
 - **Languages:** C++23, CUDA
