@@ -19,22 +19,21 @@ Note: The source code is private due to privacy policies. For inquiries, contact
 ## Real-Time Phased Array Ultrasound (PAUT): GPU-Accelerated Robotic Integration for Industrial NDT
 
 ### Project Overview
-This project develops a GPU-accelerated real-time Phased Array Ultrasound Testing (PAUT) system integrated with robotic control and simplified vision-assisted positioning, designed specifically for industrial Non-Destructive Testing (NDT). The primary objective is achieving stringent latency and throughput benchmarks essential for high-performance industrial inspections, within hardware-imposed constraints (60 MB/s input rate). Optimized CUDA processing, effective data streaming, and advanced synchronization mechanisms enable sustained real-time scanning at 588 Hz (1.7 ms/frame).
-
+This project develops a GPU-accelerated real-time Phased Array Ultrasound Testing (PAUT) system integrated with robotic control and simplified vision-assisted positioning, designed specifically for industrial Non-Destructive Testing (NDT). The primary objective is achieving stringent latency and throughput benchmarks essential for high-performance industrial inspections, within hardware-imposed constraints (60 MB/s input rate). Optimized CUDA processing, triple-buffered data streaming, and threshold-based synchronization techniques allow sustained real-time data acquisition at 588 Hz (1.7 ms/frame).
 ### Key Features and Technical Innovations
 
 #### 1. GPU-Accelerated Low-Latency Pipeline
-- Real-time GPU computation consistently achieves ultra-low latency (avg. ~0.15 ms/frame, max ~0.35 ms/frame), significantly outperforming standard PAUT hardware latency (~2.5 ms).
+- GPU kernel execution latency averages around 0.15 ms/frame, with peak kernel latencies up to ~0.35 ms/frame. Total end-to-end latency may vary depending on data acquisition and pipeline overhead, significantly outperforming standard PAUT hardware latency (~2.5 ms).
 - Asynchronous CUDA execution, triple-buffered streaming, and pinned memory techniques minimize CPU-GPU overhead.
-- Robust CUDA-OpenGL interoperability ensures smooth visualization without pipeline stalls.
+- CUDA-OpenGL interoperability is implemented to enable efficient data visualization with minimal overhead
 
 #### 2. Encoder-Free Robotic Synchronization
-- Eliminates physical encoders using real-time GPU-processed ultrasound signals for precise positional feedback (stitchID).
-- Real-time synchronization via custom IO hardware modules.
+- Uses GPU-processed ultrasound signals (stitchID) as triggers to initiate and terminate scanning, reducing dependency on physical encoders.
+- Positional synchronization is achieved through threshold-based detection combined with simple start-stop robot motion
 - Advanced interpolation techniques planned for minimizing positional discrepancies in multiple robotic scans.
 
 #### 3. Simplified Vision-Assisted Positioning
-- Intel RealSense camera identifies approximate scan initiation points, providing basic spatial alignment without requiring complex object recognition.
+- Intel RealSense camera provides initial spatial reference points before scans, assisting robot alignment. It does not participate directly in real-time scan synchronization due to inherent latency."
 
 #### 4. Optimized Real-Time Data Management
 - Custom binary streaming format replaces traditional formats (e.g., HDF5), optimized specifically for immediate processing and low-latency real-time data handling.
@@ -69,7 +68,7 @@ The system utilizes a modular architecture:
 - Strict adherence to coding standards, static analysis tools, and careful performance profiling ensures reliability and maintainability.
 
 ### Validation and Stability Testing
-- Extensive validation across multiple samples, including rigorous tests on LG battery samples, with results validated by LG experts.
+- Extensive validation across multiple samples, including rigorous tests on LG battery samples, with results reviewed by LG experts.
 - PAUT results and performance validated and confirmed by ultrasound domain specialists.
 - Continuous stability testing under real-world scanning conditions to ensure performance consistency and system robustness.
 
@@ -93,7 +92,7 @@ The system utilizes a modular architecture:
 
 ### Project Status
 - Independently developed over a 6-month period, with collaboration from mechanical engineers.
-- Fully optimized for GPU acceleration, robotic integration, and streamlined real-time data processing.
+- Optimized for GPU acceleration, robotic integration, and efficient real-time data streaming
 
 ### Summary
-This project showcases advanced GPU integration into PAUT-based robotic NDT solutions, achieving ultra-low-latency processing, innovative encoder-free robotic synchronization, and optimized data management. It effectively addresses stringent industry demands for precision, speed, and reliability within strict hardware constraints.
+This project demonstrates effective GPU integration in robotic PAUT systems for industrial NDT applications. The implementation achieves low GPU kernel latency, efficient encoder-free scanning control, and optimized real-time data streaming within hardware constraints
