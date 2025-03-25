@@ -68,6 +68,9 @@ This project implements a GPU-accelerated real-time Phased Array Ultrasound Test
 - **Internal GPU Processing Throughput:** 8–10 Gb/s
 - **Bottleneck:** PAUT hardware SDK input limitation (60 MB/s)
 
+![image](https://github.com/user-attachments/assets/5707fe41-1e33-4121-81ed-ee6f605a1f71)
+![image](https://github.com/user-attachments/assets/6746f567-d7dc-4480-aed0-40cae1b67cf8)
+
 *Note: Throughput reflects total internal GPU memory operations, distinct from external network or I/O bandwidth.*
 
 ---
