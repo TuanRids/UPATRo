@@ -19,65 +19,68 @@ Note: The source code is private due to privacy policies. For inquiries, contact
 ## Real-Time Phased Array Ultrasound (PAUT): GPU-Accelerated Robotic Integration for Industrial NDT
 
 ### Project Overview
-This project develops a GPU-accelerated real-time Phased Array Ultrasound Testing (PAUT) system integrated with robotic control and simplified vision-assisted positioning, designed specifically for industrial Non-Destructive Testing (NDT). The primary objective is achieving stringent latency and throughput benchmarks essential for high-performance industrial inspections, within hardware-imposed constraints (60 MB/s input rate). Optimized CUDA processing, triple-buffered data streaming, and threshold-based synchronization techniques allow sustained real-time data acquisition from PAUT hardware at 588 Hz (1.7 ms per frame), corresponding to a continuous Ethernet input stream of 60 MB/s.
+This project develops a GPU-accelerated real-time Phased Array Ultrasound Testing (PAUT) system integrated with robotic control and simplified vision-assisted positioning, specifically designed for industrial Non-Destructive Testing (NDT). The primary objective is achieving stringent latency and throughput benchmarks essential for high-performance industrial inspections, constrained by hardware limitations (60 MB/s input rate). Leveraging optimized CUDA kernels, CUDA Graphs, triple-buffered streaming, and threshold-based synchronization techniques, the system sustains real-time data acquisition from PAUT hardware at 588 Hz (1.7 ms/frame), corresponding to a continuous Ethernet input stream of 60 MB/s.
+
 ### Key Features and Technical Innovations
 
 #### 1. GPU-Accelerated Low-Latency Pipeline
-- Total GPU-side processing latency, including both memory transfers and kernel execution, averages ~0.22 ms per frame, as measured using GPU-side timestamp counters.
-- Data transfers are optimized to <0.03 ms via pinned memory and triple-buffered streaming. For reference, CUDA kernel execution alone averages ~0.15 ms/frame, peaking at ~0.35 ms, significantly outperforming standard PAUT hardware latency (~1.7 ms).
-- Asynchronous CUDA execution, triple-buffered streaming, and pinned memory techniques minimize CPU-GPU overhead.
-- CUDA-OpenGL interoperability is implemented to enable efficient data visualization with minimal overhead
+- Total GPU-side processing latency averages ~0.11 ms/frame (core kernel pipeline: `AscanProcessing` + `[MakeBView/computeMax]` + `CView`).
+- Data transfers optimized (<0.03 ms/frame) via pinned memory and enhanced triple-buffering techniques.
+- CUDA Graphs integration stabilizes kernel execution, minimizing overhead and further reducing peak latency.
 
-#### 2. Encoder-Free Robotic Synchronization
-- Uses GPU-processed ultrasound signals (stitchID) as triggers to initiate and terminate scanning, reducing dependency on physical encoders.
-- Positional synchronization is achieved through threshold-based detection combined with simple start-stop robot motion
-- Advanced interpolation techniques planned for minimizing positional discrepancies in multiple robotic scans.
+#### 2. Encoder-Free PAUT Synchronization
+- GPU-generated ultrasound signals in PAUT by using (`stitchID`) trigger, combined with robotic start-stop linear operations, eliminating physical encoder dependency.
+- Threshold-based detection achieves precise positional synchronization, simplifying robotic motion.
+- Planned interpolation improvements via IO board and Ring-0 driver integration for precise hardware-level triggering
 
 #### 3. Simplified Vision-Assisted Positioning
-- Intel RealSense camera provides initial spatial reference points before scans, assisting robot alignment. It does not participate directly in real-time scan synchronization due to inherent latency."
+- Intel RealSense camera provides initial spatial reference for robotic alignment without direct real-time synchronization due to latency constraints.
 
 #### 4. Optimized Real-Time Data Management
-- Custom binary streaming format replaces traditional formats (e.g., HDF5), optimized specifically for immediate processing and low-latency real-time data handling.
-- Chunked data streaming (10 MB chunks) ensures continuous data flow without bottlenecks.
+- Custom binary streaming format optimized for immediate processing and minimal latency.
+- Continuous, chunked data streaming (10 MB chunks) maintains consistent throughput without bottlenecks.
 
 #### 5. PAUT Beamforming Challenges
-- Structured CUDA kernel pipeline efficiently handles beamforming interdependencies and non-sequential memory accesses (Ascan → Beamforming → Scanline).
+- Structured CUDA kernel pipeline efficiently resolves beamforming interdependencies and complex memory access patterns (`Ascan → Beamforming → Scanline`).
 
 ### Performance Benchmarks
 - **Input Data Rate:** 60 MB/s (hardware limitation)
 - **Frame Rate:** 588 Hz (1.7 ms/frame)
-- **Total CPU + GPU Latency:** Avg 0.02 + 0.22 ms/frame (compute + transfer)
-- **GPU Kernel Latency:** Avg 0.15 ms/frame, Peak 0.35 ms/frame
+- **GPU Kernel Latency:** Avg 0.11 ms/frame (core kernels)
 - **Data Transfer Overhead:** <0.03 ms/frame (triple-buffered)
-- **Internal GPU Throughput:** 8–15 Gb/s (internal GPU memory operations)
 - **Current Limitation:** PAUT hardware SDK input rate
 
-**CUDA Kernel Execution Timeline:** 
-![image](https://github.com/user-attachments/assets/33cee97e-bc1c-465a-8809-69a8667bff67)
+**CUDA Kernel Execution Timeline:**  
+![image](https://github.com/user-attachments/assets/403bfa36-9b3c-4b51-b3f0-330224d0b242)
 
-**Detailed GPU Kernel Benchmarks:** 
-![image](https://github.com/user-attachments/assets/3f95df1f-d302-4e39-9d82-e8680e1f96ae)
+**Detailed GPU Kernel Benchmarks:**  
+![image](https://github.com/user-attachments/assets/9b37aad5-b970-4fa6-b0a5-a80799327612)
 *Note: GPU throughput refers to internal computation throughput distinct from external I/O.*
 
 ### Software Architecture
-The system utilizes a modular architecture:
-- **Frame Management:** Implemented via Factory and Observer patterns, facilitating scalable and maintainable data streaming.
-- **Critical Parameter and Class Management:** Singleton patterns with carefully managed mutex locks ensure thread safety and consistency.
-- **Feature Organization:** Clearly structured folders enabling modularization and abstraction post-R&D phase, allowing for flexible feature integration and maintenance.
+The system employs modular architecture:
+- **Frame Management:** Factory and Observer patterns for scalable data streaming.
+- **Critical Parameter Management:** Singleton patterns with mutex locks for thread-safe operation.
+- **Feature Organization:** Clear, modular folder structure enabling flexible integration and simplified maintenance.
+
+### Visualization and Rendering Techniques
+Multiple visualization contexts based on latency, synchronization, and rendering priority:
+- **Qt3D:** Visualizes robot positions/trajectories, facilitating synchronization and scene management.
+- **QOpenGLWindow (separate context):** Real-time primary ultrasound view (`SView`) at highest frequency.
+- **QOpenGLWidget (shared context):** Secondary views (`AView`, `BView`, `CView`) optimized for GPU memory efficiency.
+- **Separate Context for Vision Integration:** Planned triple-buffered OpenGL context for YOLOv8 vision processing.
 
 ### Coding Standards and Practices
-- Developed using modern C++20/23 standards, leveraging RAII, smart pointers, and best practices for robust resource management.
-- Raw pointers for CUDA memory explicitly managed within encapsulated wrappers, ensuring resource safety and readability.
-- Strict adherence to coding standards, static analysis tools, and careful performance profiling ensures reliability and maintainability.
+- C++23 and CUDA development emphasizing RAII, smart pointers, and encapsulated CUDA memory management.
+- Adherence to coding standards, static analysis, and rigorous performance profiling ensures robust system performance.
 
 ### Validation and Stability Testing
-- Extensive validation across multiple samples, including rigorous tests on LG battery samples, with results reviewed by LG experts.
-- PAUT results and performance validated and confirmed by ultrasound domain specialists.
-- Continuous stability testing under real-world scanning conditions to ensure performance consistency and system robustness.
+- Rigorous testing with LG battery samples and industrial validation by ultrasound domain experts.
+- Continuous real-world stability testing to ensure reliable performance under operational conditions.
 
 ### Future Enhancements
-- Hardware upgrade planned to surpass current 60 MB/s input limitation.
-- Development of Ring-0 drivers to enable direct IO triggering from the Yaskawa controller, improving PAUT-robot synchronization and stitching accuracy.
+- Planned hardware upgrades to exceed current 60 MB/s limitation.
+- Development of Ring-0 drivers for direct IO triggering from Yaskawa controller, enhancing synchronization accuracy.
 
 ### Technology Stack
 - **Languages:** C++23, CUDA
@@ -94,8 +97,8 @@ The system utilizes a modular architecture:
 - Real-time positioning and alignment in industrial environments
 
 ### Project Status
-- Independently developed over a 6-month period, with collaboration from mechanical engineers.
-- Optimized for GPU acceleration, robotic integration, and efficient real-time data streaming
+- Independently developed over 6 months, collaborating with mechanical engineers.
+- Fully optimized for GPU acceleration, robotic integration, and real-time data streaming.
 
 ### Summary
-This project demonstrates effective GPU integration in robotic PAUT systems for industrial NDT applications. The implementation achieves low GPU kernel latency, efficient encoder-free scanning control, and optimized real-time data streaming within hardware constraints
+The project showcases effective GPU integration in robotic PAUT systems for industrial NDT, achieving ultra-low latency, encoder-free robotic synchronization, and efficient data streaming within hardware-imposed constraints.
