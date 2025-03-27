@@ -53,7 +53,8 @@ This project develops a GPU-accelerated real-time Phased Array Ultrasound Testin
 - **Thread Padding**: Prevents underutilization in small-input scenarios.  
 - **OpenGL Interop**: Renders directly from GPU without unnecessary transfers.  
 - **Modular Kernel Design**: Clear separation of stages simplifies tuning and maintenance.
-- **Current GPU processing time (~0.15 ms) is already >10× faster than the 1.7 ms frame interval; further optimization is deferred to maintain code simplicity and stability.**
+- **GPU processing time (~0.15 ms) is already >10× faster than the 1.7 ms frame interval. Further tuning** (e.g., coalesced access, throughput maximization) **was evaluated but deferred due to low impact on critical paths.
+Priority was given to architectural gains** (e.g., triple buffering, streams, memory pooling, CUDA Graphs) **which offered higher return on complexity and stability..**
 ---
 
 
