@@ -53,6 +53,9 @@ This project develops a GPU-accelerated real-time Phased Array Ultrasound Testin
 - **Thread Padding**: Prevents underutilization in small-input scenarios.  
 - **OpenGL Interop**: Renders directly from GPU without unnecessary transfers.  
 - **Modular Kernel Design**: Clear separation of stages simplifies tuning and maintenance.
+- **Current GPU processing time (~0.15 ms) is already >10× faster than the 1.7 ms frame interval; further optimization is deferred to maintain code simplicity and stability.**
+---
+
 
 ### Performance Benchmarks
 - **Input Data Rate:** 60 MB/s (hardware limitation)
@@ -107,4 +110,6 @@ Multiple visualization contexts based on latency, synchronization, and rendering
 - Automated robotic scanning
 - Real-time positioning and alignment in industrial environments
 
-The project showcases effective GPU integration in robotic PAUT systems for industrial NDT, achieving ultra-low latency, encoder-free robotic synchronization, and efficient data streaming within hardware-imposed constraints.
+This system was independently designed and implemented from low-level PAUT SDK integration to GPU acceleration and robotic coordination, within a 7-month development cycle.
+
+
