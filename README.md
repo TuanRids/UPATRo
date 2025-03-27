@@ -15,7 +15,6 @@ Note: The source code is private due to privacy policies. For inquiries, contact
 📧 Email: ngdtuan.dn@gmail.com
 
 🔗 LinkedIn: [Nguyen Tuan](https://www.linkedin.com/in/nguyen-tuan-a2a589128/)
----
 ## Real-Time Phased Array Ultrasound (PAUT): GPU-Accelerated Robotic Integration for Industrial NDT
 
 ### Project Overview
@@ -24,7 +23,7 @@ This project develops a GPU-accelerated real-time Phased Array Ultrasound Testin
 ### Key Features and Technical Innovations
 
 #### 1. GPU-Accelerated Low-Latency Pipeline
-- Total GPU-side processing latency averages ~0.11 ms/frame (core kernel pipeline: `AscanProcessing` + `[MakeBView/computeMax]` + `CView`).
+- Total GPU-side processing latency averages ~0.15 ms/frame (core kernel pipeline: `AscanProcessing` + `[MakeBView/computeMax]` + `CView`).
 - Data transfers optimized (<0.03 ms/frame) via pinned memory and enhanced triple-buffering techniques.
 - CUDA Graphs integration stabilizes kernel execution, minimizing overhead and further reducing peak latency.
 
@@ -43,18 +42,30 @@ This project develops a GPU-accelerated real-time Phased Array Ultrasound Testin
 #### 5. PAUT Beamforming Challenges
 - Structured CUDA kernel pipeline efficiently resolves beamforming interdependencies and complex memory access patterns (`Ascan → Beamforming → Scanline`).
 
+### CUDA Optimization Techniques
+
+- **CUDA Graphs**: Reduce kernel launch overhead and ensure stable multi-stream execution with predictable latency.  
+- **Triple Buffering**: Masks CPU-GPU transfer delays, maintaining uninterrupted processing.  
+- **Multi-Stream Execution**: Overlapping stages across `compute1`, `compute2`, and `compute5` in graph improves concurrency.  
+- **Pinned Memory**: Enables fast, async data transfers between host and device.  
+- **Memory Reuse**: Avoids allocation overhead via pooled buffers.  
+- **Event Synchronization**: Maintains stage ordering without global sync.  
+- **Thread Padding**: Prevents underutilization in small-input scenarios.  
+- **OpenGL Interop**: Renders directly from GPU without unnecessary transfers.  
+- **Modular Kernel Design**: Clear separation of stages simplifies tuning and maintenance.
+
 ### Performance Benchmarks
 - **Input Data Rate:** 60 MB/s (hardware limitation)
 - **Frame Rate:** 588 Hz (1.7 ms/frame)
-- **GPU Kernel Latency:** Avg 0.11 ms/frame (core kernels)
+- **GPU Kernel Latency:** Avg 0.15 ms/frame (core kernels, Graphs)
 - **Data Transfer Overhead:** <0.03 ms/frame (triple-buffered)
 - **Current Limitation:** PAUT hardware SDK input rate
 
 **CUDA Kernel Execution Timeline:**  
-![image](https://github.com/user-attachments/assets/403bfa36-9b3c-4b51-b3f0-330224d0b242)
+![image](https://github.com/user-attachments/assets/c625d4c3-2472-4a7b-85ff-b221111d80d0)
 
 **Detailed GPU Kernel Benchmarks:**  
-![image](https://github.com/user-attachments/assets/9b37aad5-b970-4fa6-b0a5-a80799327612)
+![image](https://github.com/user-attachments/assets/da55fed1-bbdc-43ad-94e5-417b3e12cbec)
 *Note: GPU throughput refers to internal computation throughput distinct from external I/O.*
 
 ### Software Architecture
@@ -96,9 +107,4 @@ Multiple visualization contexts based on latency, synchronization, and rendering
 - Automated robotic scanning
 - Real-time positioning and alignment in industrial environments
 
-### Project Status
-- Independently developed over 6 months, collaborating with mechanical engineers.
-- Fully optimized for GPU acceleration, robotic integration, and real-time data streaming.
-
-### Summary
 The project showcases effective GPU integration in robotic PAUT systems for industrial NDT, achieving ultra-low latency, encoder-free robotic synchronization, and efficient data streaming within hardware-imposed constraints.
