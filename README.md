@@ -41,7 +41,7 @@ This project develops a GPU-accelerated real-time Phased Array Ultrasound Testin
 
 #### 5. PAUT Beamforming Challenges
 - Structured CUDA kernel pipeline efficiently resolves beamforming interdependencies and complex memory access patterns (`Ascan → Beamforming → Scanline`).
-
+- Note: Due to limited SDK documentation on PAUT signal semantics and scan formation logic, key structures such as A-scan/B-scan alignment, beamforming buffers were reconstructed based on a combination of official training media, low-level SDK experimentation, and signal consistency testing. This empirical process enabled full integration without vendor-side technical support.
 ### CUDA Optimization Techniques
 
 - **CUDA Graphs**: Reduce kernel launch overhead and ensure stable multi-stream execution with predictable latency.  
@@ -77,6 +77,16 @@ The system employs modular architecture:
 - **Frame Management:** Factory and Observer patterns for scalable data streaming.
 - **Critical Parameter Management:** Singleton patterns with mutex locks for thread-safe operation.
 - **Feature Organization:** Clear, modular folder structure enabling flexible integration and simplified maintenance.
+
+
+**Project Structure Notes**  
+The codebase follows a modular layout, separating key components by domain:
+- `Core`: GPU, PAUT processing, and streaming logic  
+- `GUI`: Qt3D and OpenGL-based visualization
+- `ioExDevice`: Industrial device integration (Yaskawa, Omron)  
+- `ResourcePA`, `Shader`: Visual and rendering assets
+- `SystemConfig`: Configuration presets and application-level glue  
+Interface abstraction and CI/CD integration are planned as finalization steps. Docker is intentionally excluded due to real-time and hardware access requirements.
 
 ### Visualization and Rendering Techniques
 Multiple visualization contexts based on latency, synchronization, and rendering priority:
