@@ -1,7 +1,9 @@
 # Real-Time Phased Array Ultrasound: Robotic Integration and Vision Detection
 
 ## Results (Ongoing)
-![Architecture PAUTVis drawio](https://github.com/user-attachments/assets/5c109c0f-47be-4b25-bf87-4c116c2a1f3c)
+
+![Architecture PAUTVis drawio](https://github.com/user-attachments/assets/6326b6c8-15f1-4941-866e-fc08d94370d9)
+
 https://github.com/user-attachments/assets/10336cc9-0363-4367-a08f-b49187899e87
 
 https://github.com/user-attachments/assets/ecc3c03d-404a-428e-8a4e-52ce408c8e0f
